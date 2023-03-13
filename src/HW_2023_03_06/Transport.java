@@ -1,6 +1,6 @@
 package HW_2023_03_06;
 
-public class Transport implements Serviceable {
+public abstract class Transport implements Serviceable {
     private String modelName;
     private int wheelsCount;
 
@@ -42,17 +42,17 @@ public class Transport implements Serviceable {
         }
     }
 
-    public void updateTyre() {
-        System.out.println("Меняем покрышку");
-    }
+    public abstract void updateTyre();
 
-    public void checkEngine() {
-        System.out.println("Проверяем двигатель");
+    @Override
+    public void service(Mechanic mechanic) {
+        System.out.println("Механик " + mechanic.getName() + " обслуживает " + getModelName() + ":");
+        for (int i = 0; i < getWheelsCount(); i++) {
+            updateTyre();
+        }
     }
-
-    public void checkTrailer() {
-        System.out.println("Проверяем прицеп");
-    }
-
 }
+
+
+
 
